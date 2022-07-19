@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: alexandra.volushkova
+      changes:
+        - sqlFile:
+            path: \db_changelog\change_sets\create_restaurant.sql
+  - changeSet:
+      id: 2
+      author: kuganov
+      changes:
+        - sqlFile:
+            path: \db_changelog\change_sets\create_review.sql
