@@ -1,6 +1,6 @@
 package com.example.hw_5.config;
 
-import com.example.hw_5.entity.Restaurant;
+import com.example.hw_5.Hw5Application;
 import com.example.hw_5.service.RestaurantServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest(classes = {
-        Restaurant.class,
+        Hw5Application.class,
         H2TestProfileJPAConfig.class})
 @ActiveProfiles("test")
 public class AppContextTest {
