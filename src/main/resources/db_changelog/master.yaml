@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: 1
-      author: alexandra.volushkova
+      author: kuganov
       changes:
         - sqlFile:
             path: \db_changelog\change_sets\create_restaurant.sql
