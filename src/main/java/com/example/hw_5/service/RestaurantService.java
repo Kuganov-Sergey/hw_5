@@ -11,4 +11,6 @@ public interface RestaurantService {
     void addRestaurant(Restaurant restaurant);
     void updateDescriptionByName(String name, String description);
     Restaurant findRestaurantByName(String name);
+    void addPhoneByRestaurantName(String name, String phone);
+    void addEmailAddressByName(String name, String emailAddress);
 }

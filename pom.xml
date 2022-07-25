@@ -71,6 +71,12 @@
             <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.libphonenumber</groupId>
+            <artifactId>libphonenumber</artifactId>
+            <version>8.12.52</version>
+        </dependency>
     </dependencies>
 
     <build>

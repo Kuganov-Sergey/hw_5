@@ -3,6 +3,7 @@ package com.example.hw_5.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Entity
@@ -19,4 +20,17 @@ public class Restaurant {
 
     @Column(name = "description")
     private String description;
+
+    @Basic
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @Basic
+    @Column(name = "email_address")
+    private String emailAddress;
+
+    @OneToMany(mappedBy = "restaurant")
+    private Set<Review> reviews;
+
+
 }

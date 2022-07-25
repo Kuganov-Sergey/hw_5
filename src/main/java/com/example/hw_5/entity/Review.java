@@ -14,8 +14,8 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "restaurant_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant_id;
 
     @Column(name = "review")
