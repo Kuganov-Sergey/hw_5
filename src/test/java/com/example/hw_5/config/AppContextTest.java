@@ -39,11 +39,12 @@ public class AppContextTest {
         restaurant.setName("mac");
         restaurant.setDescription("burgers");
         restaurantService.addRestaurant(restaurant);
-//        Review review = new Review();
-//        review.setReview("best place");
-//        review.setRestaurant_id(restaurant);
-//        review.setRating(5);
-//        reviewService.addReview(review);
+        Review review = new Review();
+        review.setReview("best place");
+        Restaurant restaurant1 = restaurantService.getAllRestaurants().get(0);
+        review.setRestaurant_id(restaurantService.getAllRestaurants().get(0));
+        review.setRating(5);
+        reviewService.addReview(review);
     }
 
     @AfterEach
@@ -83,11 +84,11 @@ public class AppContextTest {
 
 
 
-//    @Test
-//    void getReviewsByName() {
-//        String review = "best place";
-//        System.out.println(reviewService.getReviewsByName("mac"));
-//        assertEquals(review, reviewService.getReviewsByName("mac").get(0));
-//    }
+    @Test
+    void getReviewsByName() {
+        String review = "best place";
+        System.out.println(reviewService.getReviewsByName("mac"));
+        assertEquals(review, reviewService.getReviewsByName("mac").get(0));
+    }
 
 }

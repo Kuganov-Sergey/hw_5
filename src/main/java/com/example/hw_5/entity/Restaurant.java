@@ -29,8 +29,8 @@ public class Restaurant {
     @Column(name = "email_address")
     private String emailAddress;
 
-//    @OneToMany(mappedBy = "restaurant_id")
-//    private Set<Review> reviews;
+    @OneToMany(mappedBy = "restaurant_id")
+    private Set<Review> reviews;
 
 
 }

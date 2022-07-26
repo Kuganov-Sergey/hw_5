@@ -1,6 +1,8 @@
 package com.example.hw_5.controller;
 
+import com.example.hw_5.dto.out.RestaurantOutDTO;
 import com.example.hw_5.entity.Restaurant;
+import com.example.hw_5.mapper.RestaurantMapper;
 import com.example.hw_5.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,9 @@ public class RestaurantController {
     @Autowired
     private RestaurantService restaurantService;
 
+    @Autowired
+    private RestaurantMapper mapper;
+
     @GetMapping("/all")
     public List<Restaurant> getAllRestaurants() {
         return restaurantService.getAllRestaurants();
@@ -21,7 +26,7 @@ public class RestaurantController {
 
     @GetMapping("/description/{name}")
     public String getDescriptionByName(@PathVariable String name) {
-        Restaurant restaurant = findRestaurantByName(name);
+        Restaurant restaurant = restaurantService.findRestaurantByName(name);
         return restaurant.getDescription();
     }
 
@@ -36,7 +41,9 @@ public class RestaurantController {
     }
 
     @GetMapping("/{name}")
-    public Restaurant findRestaurantByName(@PathVariable String name) {
-        return restaurantService.findRestaurantByName(name);
+    public RestaurantOutDTO findRestaurantByName(@PathVariable String name) {
+        Restaurant restaurant = restaurantService.findRestaurantByName(name);
+//        RestaurantOutDTO restaurantOutDTO = new RestaurantOutDTO(restaurant.getId(), restaurant.getDescription());
+        return mapper.restaurantToRestaurantOutDTO(restaurant);
     }
 }

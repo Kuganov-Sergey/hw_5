@@ -1,7 +1,8 @@
 package com.example.hw_5.config;
 
-import com.example.hw_5.controller.RestaurantController;
+import com.example.hw_5.dto.out.RestaurantOutDTO;
 import com.example.hw_5.entity.Restaurant;
+import com.example.hw_5.service.RestaurantService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,7 +31,7 @@ public class RestaurantControllerTest extends AppContextTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
     @Autowired
-    private RestaurantController controller;
+    private RestaurantService controller;
 
     @Test
     void getAll() throws Exception {
@@ -52,17 +53,17 @@ public class RestaurantControllerTest extends AppContextTest {
                 .andExpect(content().string(expected));
     }
 
-//    @Test
-//    void addRestaurants() throws Exception {
-//        Restaurant restaurant = new Restaurant();
-//        restaurant.setName("kfc");
-//        restaurant.setDescription("kfc");
-//        ObjectMapper objectMapper = new JsonMapper();
-//        String obj = objectMapper.writeValueAsString(controller.getAllRestaurants());
-//        this.mockMvc.perform(post("/restaurants/new")
-//                .contentType(MediaType.APPLICATION_JSON).content(obj))
-//                .andExpect(status().isOk());
-//    }
+    @Test
+    void addRestaurants() throws Exception {
+        Restaurant restaurant = new Restaurant();
+        restaurant.setName("kfc");
+        restaurant.setDescription("kfc");
+        ObjectMapper objectMapper = new JsonMapper();
+        String obj = objectMapper.writeValueAsString(restaurant);
+        this.mockMvc.perform(post("/restaurant/new")
+                .contentType(MediaType.APPLICATION_JSON).content(obj))
+                .andExpect(status().isOk());
+    }
 
     @Test
     void updateDescription() throws Exception {
@@ -73,8 +74,14 @@ public class RestaurantControllerTest extends AppContextTest {
 
     @Test
     void findRestaurantByName() throws Exception {
+        RestaurantOutDTO restaurant = RestaurantOutDTO.builder()
+                .id(1)
+                .description("burgers")
+                .phoneNumber("absent")
+                .emailAddress(null)
+                .restaurantName("mac")
+                .build();
         ObjectMapper objectMapper = new JsonMapper();
-        Restaurant restaurant = controller.findRestaurantByName("mac");
         String expected = objectMapper.writeValueAsString(restaurant);
         this.mockMvc.perform(get("/restaurant/{name}", "mac"))
                 .andDo(print())
