@@ -2,14 +2,16 @@ package com.example.hw_5.service;
 
 import com.example.hw_5.dao.RestaurantRepository;
 import com.example.hw_5.entity.Restaurant;
+import com.example.hw_5.exception.FoundationDateIsExpiredException;
 import com.example.hw_5.exception.IncorrectEmailAddressException;
 import com.example.hw_5.util.EmailUtil;
 import com.example.hw_5.util.PhoneUtil;
 import com.google.i18n.phonenumbers.NumberParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -81,5 +83,25 @@ public class RestaurantServiceImpl implements RestaurantService {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void addRestaurantByNameAndCreationDate(String name, LocalDate creationDate) throws FoundationDateIsExpiredException {
+        if (creationDate == null || LocalDate.now().isBefore(creationDate)) {
+            throw new FoundationDateIsExpiredException(name, creationDate);
+        }
+        Restaurant restaurant = new Restaurant();
+        restaurant.setName(name);
+        restaurant.setDescription("mac");
+        restaurant.setEmailAddress("default");
+        restaurant.setPhoneNumber("absent");
+        restaurant.setDate(creationDate);
+        restaurantRepository.save(restaurant);
+    }
+
+    @Override
+    public LocalDate getCreationDateByRestaurantName(String name) {
+        Restaurant restaurant = findRestaurantByName(name);
+        return restaurant.getDate();
     }
 }

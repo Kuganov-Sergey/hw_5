@@ -43,7 +43,6 @@ public class RestaurantController {
     @GetMapping("/{name}")
     public RestaurantOutDTO findRestaurantByName(@PathVariable String name) {
         Restaurant restaurant = restaurantService.findRestaurantByName(name);
-//        RestaurantOutDTO restaurantOutDTO = new RestaurantOutDTO(restaurant.getId(), restaurant.getDescription());
         return mapper.restaurantToRestaurantOutDTO(restaurant);
     }
 }

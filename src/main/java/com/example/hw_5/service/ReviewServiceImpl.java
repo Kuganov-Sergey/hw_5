@@ -17,12 +17,12 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     @Transactional
-    public List<String> getReviewsByName(String name) {
+    public List<String> getReviewsByRestaurantName(String name) {
         return reviewRepository.getReviewsByName(name);
     }
 
     @Override
-    public double getRatingByName(String name) {
+    public double getRatingByRestaurantName(String name) {
         return reviewRepository.getRatingByName(name);
     }
 
@@ -32,7 +32,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public void updateReview(int id, String review) {
+    public void updateReviewByRestaurantId(int id, String review) {
         Optional<Review> reviewNewObject = reviewRepository.findById(id);
         if (reviewNewObject.isPresent()) {
             reviewNewObject.get().setReview(review);

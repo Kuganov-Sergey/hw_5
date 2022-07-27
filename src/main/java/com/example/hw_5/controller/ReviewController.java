@@ -16,15 +16,15 @@ public class ReviewController {
 
     @GetMapping("/{name}")
     public List<String> getReviewsByName(@PathVariable String name) {
-        return reviewService.getReviewsByName(name);
+        return reviewService.getReviewsByRestaurantName(name);
     }
 
     @GetMapping("/rating/{name}")
     public double getRatingByName(@PathVariable String name) {
-        return reviewService.getRatingByName(name);
+        return reviewService.getRatingByRestaurantName(name);
     }
 
-    @PutMapping("/new")
+    @PostMapping("/new")
     public void addReview(@RequestBody Review review) {
         reviewService.addReview(review);
     }

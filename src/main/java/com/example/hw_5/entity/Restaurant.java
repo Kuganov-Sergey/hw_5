@@ -1,12 +1,16 @@
 package com.example.hw_5.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.time.LocalDate;
 
-@Data
+
 @Entity
+@Getter
+@Setter
 @Table(name = "restaurants")
 public class Restaurant {
 
@@ -29,8 +33,7 @@ public class Restaurant {
     @Column(name = "email_address")
     private String emailAddress;
 
-    @OneToMany(mappedBy = "restaurant_id")
-    private Set<Review> reviews;
-
+    @Column(name = "creation_date")
+    private LocalDate date;
 
 }
