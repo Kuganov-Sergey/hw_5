@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: 1
-      author: alexandra.volushkova
+      author: kuganov
       changes:
         - sqlFile:
             path: \db_changelog\change_sets\create_restaurant.sql
@@ -11,3 +11,21 @@ databaseChangeLog:
       changes:
         - sqlFile:
             path: \db_changelog\change_sets\create_review.sql
+  - changeSet:
+      id: 3
+      author: kuganov
+      changes:
+        - sqlFile:
+            path: \db_changelog\change_sets\add_phone_number.sql
+  - changeSet:
+      id: 4
+      author: kuganov
+      changes:
+        - sqlFile:
+            path: \db_changelog\change_sets\add_creation_date_column.sql
+  - changeSet:
+      id: 5
+      author: kuganov
+      changes:
+        - sqlFile:
+            path: \db_changelog\change_sets\add_email_address.sql

@@ -6,8 +6,11 @@ import java.util.List;
 
 public interface ReviewService {
 
-    List<String> getReviewsByName(String name);
-    double getRatingByName(String name);
+    List<String> getReviewsByRestaurantName(String name);
+
+    double getRatingByRestaurantName(String name);
+
     void addReview(Review review);
-    void updateReview(int id, String review);
+
+    void updateReviewByRestaurantId(int id, String review);
 }
